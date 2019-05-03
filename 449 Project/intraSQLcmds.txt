@@ -1,0 +1,21 @@
+CREATE TABLE [dbo].Stocks
+(
+	[StockID] INT NOT NULL PRIMARY KEY,
+	[StockName] TEXT NOT NULL, 
+    [priceLow] DECIMAL NULL, 
+    [priceHigh] DECIMAL NULL, 
+    [avgVolume] DECIMAL NULL, 
+    [avgPrice] DECIMAL NULL, 
+    [Volatility] DECIMAL NULL, 
+    [Sector] TEXT NULL
+)
+
+BULK INSERT Stocks
+FROM 'C:\Users\David\Desktop\449 Project\s&p500.csv'
+WITH
+(
+FIELDTERMINATOR = ',',
+ROWTERMINATOR = '\n'
+)
+
+Drop Table Stocks

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockSelector", "StockSelector\StockSelector.csproj", "{87F41A43-070C-476E-BFA2-9D0445B28427}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87F41A43-070C-476E-BFA2-9D0445B28427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87F41A43-070C-476E-BFA2-9D0445B28427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87F41A43-070C-476E-BFA2-9D0445B28427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87F41A43-070C-476E-BFA2-9D0445B28427}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77BB97F1-7FDC-424A-A603-91C54365F71C}
+	EndGlobalSection
+EndGlobal
