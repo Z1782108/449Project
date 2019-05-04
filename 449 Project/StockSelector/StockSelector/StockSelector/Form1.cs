@@ -22,7 +22,7 @@ namespace StockSelector
         public string sectorVar = "";
         public Boolean volatilityVar = false;
         public Boolean liquidityVar = false;
-        public double priceVar = 0;
+        public string priceVar = "";
 
         //set sector selection
         private void SectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,11 +56,12 @@ namespace StockSelector
         private void LiquidityComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string liquidityChoice = LiquidityComboBox.Text;
-            if (liquidityChoice  == "Liquidity")
+            if (liquidityChoice == "Liquidity")
             {
                 MessageBox.Show("Please select a liquidity value.");
             }
-            else if (liquidityChoice == "Low Trade Volume(More price control, harder to sell)") {
+            else if (liquidityChoice == "Low Trade Volume(More price control, harder to sell)")
+            {
                 liquidityVar = true;
             }
             else
@@ -79,19 +80,19 @@ namespace StockSelector
             }
             else if (priceChoice == "< $50")
             {
-                priceVar = 50;
+                priceVar = "50";
             }
             else if (priceChoice == "< $100")
             {
-                priceVar = 100;
+                priceVar = "100";
             }
             else if (priceChoice == "< $200")
             {
-                priceVar = 200;
+                priceVar = "200";
             }
             else
             {
-                priceVar = 100000;
+                priceVar = "100000";
             }
         }
 
@@ -100,62 +101,56 @@ namespace StockSelector
             string liqQuery = "";
             string volaQuery = "";
             string priceSectorQuery = "";
-            string selectionQuery = "";
+            //string selectionQuery = "";
 
             //set query variable
-            if (liquidityVar == true) {
-                liqQuery = "Select * From Ticker Where Liquidity <= 2236151";
-            } else
+            if (liquidityVar == true)
             {
-                liqQuery = "Select * From Ticker Where Liquidity > 2236151";
+                liqQuery = "SELECT StockName FROM Stocks WHERE avgVolume <= 2236151";
+            }
+            else
+            {
+                liqQuery = "SELECT StockName FROM Stocks WHERE avgVolume > 2236151";
             }
 
             if (volatilityVar == true)
             {
-                volaQuery = " And Volatility <= 37";
-            } else
-            {
-                volaQuery = " And Volatility > 37";
+                volaQuery = " AND Volatility <= 37";
             }
-            priceSectorQuery = " And Sector = " + sectorVar + " And Price < " + priceVar;
+            else
+            {
+                volaQuery = " AND Volatility > 37";
+            }
+            priceSectorQuery = " AND Sector = " + sectorVar + " AND avgPrice < " + priceVar;
 
-            selectionQuery = liqQuery + volaQuery + priceSectorQuery;
+            string selectionQuery = liqQuery + volaQuery + priceSectorQuery;
 
             //open connection and query
-            SqlConnection connection = new SqlConnection();
-
-            connection.ConnectionString = Properties.Settings.Default.Database1ConnectionString;
-
-            SqlCommand command = new SqlCommand();
-
-            command.Connection = connection;
-            command.CommandText = selectionQuery;
-            command.CommandType = CommandType.Text;
-
-            //Output to listbox
-            try
+            string connString = Properties.Settings.Default.Database1ConnectionString;
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 connection.Open();
 
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                using (SqlCommand command = new SqlCommand(
+                selectionQuery, connection))
                 {
-                    string ticker = (string)reader["Ticker"];
+                    //Output to listbox
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string ticker = (string)reader["StockName"];
 
-                    this.resultsListBox.Items.Add(ticker);
+                            this.resultsListBox.Items.Add(ticker);
+                        }
+
+                        reader.Close();
+
+                        //close connection
+                        if (connection.State == ConnectionState.Open)
+                            connection.Close();
+                    }
                 }
-
-                reader.Close();
-            }
-            catch
-            {
-            }
-            //close connection
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
             }
         }
     }

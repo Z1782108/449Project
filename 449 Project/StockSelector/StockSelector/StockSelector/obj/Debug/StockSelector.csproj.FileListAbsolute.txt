@@ -25,10 +25,10 @@ C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSe
 C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\bin\Debug\StockSelector.exe.config
 C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\bin\Debug\StockSelector.exe
 C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\bin\Debug\StockSelector.pdb
-C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\obj\Debug\StockSelector.csprojAssemblyReference.cache
 C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\obj\Debug\StockSelector.StockSelector.resources
 C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\obj\Debug\StockSelector.Properties.Resources.resources
 C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\obj\Debug\StockSelector.csproj.GenerateResource.cache
 C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\obj\Debug\StockSelector.csproj.CoreCompileInputs.cache
 C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\obj\Debug\StockSelector.exe
 C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\obj\Debug\StockSelector.pdb
+C:\Users\mstad\OneDrive\Desktop\C#\449 Project\449 Project\StockSelector\StockSelector\StockSelector\obj\Debug\StockSelector.csprojAssemblyReference.cache
