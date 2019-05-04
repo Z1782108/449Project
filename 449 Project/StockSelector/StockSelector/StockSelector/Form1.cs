@@ -22,7 +22,7 @@ namespace StockSelector
         public string sectorVar = "";
         public Boolean volatilityVar = false;
         public Boolean liquidityVar = false;
-        public string priceVar = "";
+        public Boolean priceVar = false;
 
         //set sector selection
         private void SectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,21 +78,13 @@ namespace StockSelector
             {
                 MessageBox.Show("Please select a price range.");
             }
-            else if (priceChoice == "< $50")
+            else if (priceChoice == "Buget")
             {
-                priceVar = "50";
-            }
-            else if (priceChoice == "< $100")
-            {
-                priceVar = "100";
-            }
-            else if (priceChoice == "< $200")
-            {
-                priceVar = "200";
+                priceVar = true;
             }
             else
             {
-                priceVar = "100000";
+                priceVar = false;
             }
         }
 
@@ -100,30 +92,40 @@ namespace StockSelector
         {
             string liqQuery = "";
             string volaQuery = "";
-            string priceSectorQuery = "";
-            //string selectionQuery = "";
+            string priceQuery = "";
+            string sectorQuery = "";
 
             //set query variable
             if (liquidityVar == true)
             {
-                liqQuery = "SELECT StockName FROM Stocks WHERE avgVolume <= 2236151";
+                liqQuery = "SELECT StockName FROM Stocks WHERE Volume = LOW";
             }
             else
             {
-                liqQuery = "SELECT StockName FROM Stocks WHERE avgVolume > 2236151";
+                liqQuery = "SELECT StockName FROM Stocks WHERE Volume = HIGH";
             }
 
             if (volatilityVar == true)
             {
-                volaQuery = " AND Volatility <= 37";
+                volaQuery = " AND Growth = STABLE";
             }
             else
             {
-                volaQuery = " AND Volatility > 37";
+                volaQuery = " AND Growth = GROWTH";
             }
-            priceSectorQuery = " AND Sector = " + sectorVar + " AND avgPrice < " + priceVar;
 
-            string selectionQuery = liqQuery + volaQuery + priceSectorQuery;
+            if (priceVar == true)
+            {
+                priceQuery = " AND Price = BUDGET";
+            }
+            else
+            {
+                priceQuery = " AND Growth = BUDGET OR ANY";
+            }
+
+            sectorQuery = " AND Sector = " + sectorVar;
+
+            string selectionQuery = liqQuery + volaQuery + priceQuery + sectorQuery;
 
             //open connection and query
             string connString = Properties.Settings.Default.Database1ConnectionString;
